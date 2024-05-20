@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Login Mockup</title>
+  
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.login-container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  width: 80%;
+}
+
+.form-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.username-input,
+.password-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.login-button {
+  background-color: #4c87ee;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  /* opacity: 0.5; Initially disabled */
+}
+
+.login-button:hover {
+  opacity: 2; /* Enable hover effect */
+  background-color: rgb(32, 32, 231);
+}
+
+.forgot-password {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.or-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.or-line {
+  width: 49%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-text {
+  padding: 0 10px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.facebook-login {
+  text-decoration: none;
+  
+}
+</style>
+<body>
+  <div class="login-container">
+    <img src="/in.png" alt="Instagram Logo" class="logo">
+    <form action="#" method="post" class="login-form">
+      
+      <input type="text" name="username" placeholder="phone number , username or Email" class="username-input" required>
+      <input type="password" name="password" placeholder="Password" class="password-input" required>
+      <button type="submit" class="login-button" disabled>Log In</button>
+      <a href="#" class="forgot-password">Forgot password?</a>
+      <div class="or-container">
+        <div class="or-line"></div>
+        <span class="or-text">or</span>
+        <div class="or-line"></div>
+      </div>
+      <a href="#" class="facebook-login">Log in with Facebook</a>
+      <p class="signup-text">Don't have an account? <a href="#">Sign up</a></p>
+    </form>
+  </div>
+</body>
+</html>
