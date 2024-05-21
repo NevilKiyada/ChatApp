@@ -10,3 +10,7 @@ def home (request):
 
 def login_page (request):
     return render(request,"login/login.html" )
+
+
+def Ragister(request):
+    return render(request,"login/ragister.html" )

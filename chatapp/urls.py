@@ -24,4 +24,5 @@ urlpatterns = [
     path('',home ,name='home'),
     path('messages', message, name='messages'),
     path('login' ,login_page, name='login_page'),
+    path('Ragister', Ragister, name='Ragister'),
 ]
