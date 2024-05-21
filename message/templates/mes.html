@@ -1,24 +1,30 @@
 <!DOCTYPE html>
+{% include 'sidebar.html' %}
+{% block sidebar %}{% endblock sidebar %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instagram Message Mockup</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    .messblock{
+        height: 100vh;
+        width: 30%;
+        border-right: 1px solid white;
+    }
+  </style>
 </head>
 <style>
-    .userlist {
-        height: 100%;
-        width: 20%;
-        backgroundcolor: green;
-    }
+    
 </style>
     
 <body>
-    <div class="userlist">
-        <div>
-            
+        <div class="messblock">
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div></div>
         </div>
-    </div>
 </body>
 </html>

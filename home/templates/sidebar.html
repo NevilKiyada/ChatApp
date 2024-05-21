@@ -11,9 +11,16 @@
             background-color: black;
         }
         .sidebar{
+            float: left;
             height: 100vh;
             width: 15%;
             border-right: 1px solid white;
+        }
+        .smallsidebar{
+            height: 100vh;
+            width: 5%;
+            border-right: 1px solid white;
+            float: left;
         }
         .instaimg{
             height: 15vh;
@@ -29,53 +36,16 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        <div>
-            <div class="instaimg">
-                <img style="height: 5vh; width: 100%; margin-top: 5vh;" src="https://www.momentummotorcars.com/wp-content/themes/aanWordpress/images/icons/instagramTitle.png" alt="">
-            </div>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">home</span>
-            <span>Home</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">search</span>
-            <span>Search</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">explore</span>
-            <span>Explore</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">play_circle_filled</span>
-            <span>Reels</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">chat_bubble</span>
-            <span>Message</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">favorite_border</span> 
-            <span>Notification</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">add_box</span>
-            <span>Add</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">circle</span>
-            <span>Profile</span>
-        </div>
-        <div class="sidebar-item" style="margin-top: 16vh;">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">@</span>
-            <span>Threads</span>
-        </div>
-        <div class="sidebar-item">
-            <span class="material-icons" style="padding-top: 5px; padding-right: 10px; float: left; font-size: 25px;">menu</span>
-            <span>More</span>
-        </div>
-    </div>
+    {% if is_large_sidebar %}
+        {% include 'largesidebar.html' %}
+    {% else %}
+        {% include 'smallsidebar.html' %}
+    {% endif %}    
 </body>
 
 </html>
+
+{% block sidebar %}
+
+
+{% endblock %}
