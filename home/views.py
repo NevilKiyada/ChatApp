@@ -3,9 +3,12 @@ from django.http import HttpResponse
 
 from django.contrib.auth import authenticate , login , logout
 
+
+
 # Create your views here.
 def home (request):
-    return render(request,"sidebar.html",)
+    is_large_sidebar = True  # Example: this could be based on user preferences or any other logic
+    return render(request, 'sidebar.html', {'is_large_sidebar': is_large_sidebar})
 
 
 def login_page (request):
