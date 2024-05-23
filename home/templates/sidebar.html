@@ -10,6 +10,12 @@
         body{
             background-color: black;
         }
+        button{
+            background-color: black;
+            width: 100%;
+            color: white;
+            border: 0px;
+        }
         .sidebar{
             float: left;
             height: 100vh;
@@ -27,7 +33,6 @@
             width: 80%;
         }
         .sidebar-item{
-            color: white;
             margin: 25px 20px;
             font-size: 18px;
             font-weight: bold;
@@ -36,7 +41,7 @@
 </head>
 
 <body>
-    <h1>Welcome {{request.user.username}} </h1>
+    <!-- <h1>Welcome {{request.user.username}} </h1> -->
     <a href="/logout/">  
         Logout 
       </a>
