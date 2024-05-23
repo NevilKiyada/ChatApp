@@ -20,12 +20,12 @@
             float: left;
             height: 100vh;
             width: 15%;
-            border-right: 1px solid white;
+            border-right: 1px solid gray;
         }
         .smallsidebar{
             height: 100vh;
             width: 5%;
-            border-right: 1px solid white;
+            border-right: 1px solid gray;
             float: left;
         }
         .instaimg{
@@ -42,9 +42,9 @@
 
 <body>
     <!-- <h1>Welcome {{request.user.username}} </h1> -->
-    <a href="logout">  
+    {% comment %} <a href="logout">  
         Logout 
-      </a>
+      </a> {% endcomment %}
     {% if is_large_sidebar %}
         {% include 'largesidebar.html' %}
     {% else %}
