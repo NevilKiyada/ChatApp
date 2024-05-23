@@ -11,6 +11,11 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import authenticate , login , logout
 
+from message.templates import *
+from account.templates import *
+from explore.templates import *
+from reels.templates import *
+
 
 
 # Create your views here.
@@ -24,8 +29,6 @@ def home (request):
 def logout_page (request):
     logout(request)
     return redirect('/login')
-
-
 
 
 def login_page (request):
@@ -48,7 +51,7 @@ def login_page (request):
         else :
             login(request,check_user)
             print (Username)
-            return redirect(' ')    
+            return redirect('home')    
 
 
     
@@ -69,7 +72,7 @@ def Register(request):
         #if exists give a message to ragister form
         if same_uname.exists():
             messages.info(request, "User name already exists")
-            return redirect('/Register/') 
+            return redirect('register') 
         
        
 
@@ -86,5 +89,27 @@ def Register(request):
         
         messages.info(request, "Account Created successfully") 
 
-        return redirect (' ')
+        return redirect ('/home')
     return render(request,'login/ragister.html')
+
+
+def Message(request):
+    return render(request,'mes.html')
+
+def Notification(request):
+    return render(request,'notification.html')
+
+def Search(request):
+    return render(request,'search.html')
+
+def Add(request):
+    return render(request,'add.html')
+
+def Account(request):
+    return render(request,'account.html')
+
+def Reels(request):
+    return render(request,'reels.html')
+
+def Explore(request):
+    return render(request,'explore.html')

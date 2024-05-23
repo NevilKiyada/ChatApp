@@ -42,7 +42,7 @@
 
 <body>
     <!-- <h1>Welcome {{request.user.username}} </h1> -->
-    <a href="/logout/">  
+    <a href="logout">  
         Logout 
       </a>
     {% if is_large_sidebar %}
@@ -51,6 +51,39 @@
         {% include 'smallsidebar.html' %}
     {% endif %}    
 </body>
+
+<script>
+    document.getElementById('home').addEventListener('click', function() {
+        window.location.href = "{% url 'home' %}";
+    });
+    document.getElementById('search').addEventListener('click', function() {
+        window.location.href = "{% url 'search' %}";
+    });
+    document.getElementById('explore').addEventListener('click', function() {
+        window.location.href = "{% url 'explore' %}";
+    });
+    document.getElementById('reels').addEventListener('click', function() {
+        window.location.href = "{% url 'reels' %}";
+    });
+    document.getElementById('mess').addEventListener('click', function() {
+        window.location.href = "{% url 'messages' %}";
+    });
+    document.getElementById('notification').addEventListener('click', function() {
+        window.location.href = "{% url 'notification' %}";
+    });
+    document.getElementById('add').addEventListener('click', function() {
+        window.location.href = "{% url 'add' %}";
+    });
+    document.getElementById('account').addEventListener('click', function() {
+        window.location.href = "{% url 'account' %}";
+    });
+    document.getElementById('thread').addEventListener('click', function() {
+        window.location.href = "{% url 'home' %}";
+    });
+    document.getElementById('more').addEventListener('click', function() {
+        window.location.href = "{% url 'home' %}";
+    });
+</script>
 
 </html>
 
