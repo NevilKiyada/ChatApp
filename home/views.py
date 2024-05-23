@@ -86,9 +86,5 @@ def Register(request):
         
         messages.info(request, "Account Created successfully") 
 
-<<<<<<< HEAD
         return redirect (' ')
-=======
-        return redirect ('')
->>>>>>> ef50af10b5ee4dcee84e9669757d84693584bc48
     return render(request,'login/ragister.html')

@@ -42,6 +42,10 @@ INSTALLED_APPS = [
 EXTERNAL_APPS  = [
 'home',
 'message',
+'account',
+'explore',
+'reels',
+
 ]
 INSTALLED_APPS += EXTERNAL_APPS 
 
