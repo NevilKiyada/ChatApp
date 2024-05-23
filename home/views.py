@@ -21,7 +21,7 @@ from reels.templates import *
 # Create your views here.
 @login_required(login_url='/login')
 def home (request):
-    user=User.objects.all()
+    user=CustomUser.objects.all()
     is_large_sidebar = True  # Example: this could be based on user preferences or any other logic
     return render(request, 'sidebar.html',context={'user':user , 'is_large_sidebar': is_large_sidebar} )
 
@@ -36,7 +36,7 @@ def login_page (request):
         Username= request.POST.get('username')
         Password= request.POST.get('password')
 
-        if not User.objects.filter(username= Username).exists():
+        if not CustomUser.objects.filter(username= Username).exists():
             messages.info(request, "User name is not available")
             return redirect('/login/') 
         
@@ -68,7 +68,7 @@ def Register(request):
         Password= request.POST.get('password')
         
         #for find user name alredy existing
-        same_uname=User.objects.filter(username=Username)
+        same_uname=CustomUser.objects.filter(username=Username)
         #if exists give a message to ragister form
         if same_uname.exists():
             messages.info(request, "User name already exists")
@@ -78,7 +78,7 @@ def Register(request):
 
 
         #give value to objects of User model by using variables
-        user= User.objects.create(
+        user= CustomUser.objects.create(
             first_name=First_name,
            
             username=Username,
