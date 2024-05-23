@@ -112,4 +112,5 @@ def Reels(request):
     return render(request,'reels.html')
 
 def Explore(request):
-    return render(request,'explore.html')
+    is_large_sidebar = True 
+    return render(request,'explore.html',context={'is_large_sidebar': is_large_sidebar} )
