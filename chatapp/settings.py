@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settings.py
+
+# Add this line to specify your custom user model
+AUTH_USER_MODEL = 'home.CustomUser'  
+
 
 # Application definition
 
