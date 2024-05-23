@@ -13,4 +13,5 @@ class UserProfile(models.Model):
         return f"{self.user.username}'s Profile"
 
 
-# class friemd(models.Model):
+class friemd(models.Model):
+    pass
