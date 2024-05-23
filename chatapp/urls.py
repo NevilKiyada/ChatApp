@@ -21,9 +21,9 @@ from message.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home',home ,name='home'),
+    path('',home ,name='home'),
     path('messages', message, name='messages'),
     path('login' ,login_page, name='login_page'),
-    path('logout/' ,logout_page,name='logout'),
-    path('Register/', Register, name='Register'),
+    path('logout' ,logout_page,name='logout'),
+    path('register', Register, name='Register'),
 ]

@@ -48,7 +48,7 @@ def login_page (request):
         else :
             login(request,check_user)
             print (Username)
-            return redirect('home')    
+            return redirect(' ')    
 
 
     
@@ -86,5 +86,5 @@ def Register(request):
         
         messages.info(request, "Account Created successfully") 
 
-        return redirect ('/home')
+        return redirect ('')
     return render(request,'login/ragister.html')
