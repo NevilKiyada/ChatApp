@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from message.views import *
-
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from chatapp import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home ,name='home'),
@@ -34,3 +36,11 @@ urlpatterns = [
     path('logout' ,logout_page,name='logout'),
     path('register', Register, name='Register'),
 ]
+
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                        document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()
