@@ -79,17 +79,17 @@ def Register(request):
 
         #give value to objects of User model by using variables
         user= CustomUser.objects.create(
-            first_name=First_name,
+            name=First_name,
            
             username=Username,
             email = Email
         )
         user.set_password(Password)
         user.save()
-        
+        print ("account created successfully")
         messages.info(request, "Account Created successfully") 
 
-        return redirect ('/home')
+        return redirect ('home') 
     return render(request,'login/ragister.html')
 
 

@@ -29,11 +29,12 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, name, email, password, **extra_fields)
 
     def add_friend(self, user, friend):
-        """
-        Add a user to another user's friend list.
-        """
         user.following.add(friend)
         friend.followers.add(user)
+
+    def remove_friend(self, user, friend):
+        user.following.remove(friend)
+        friend.followers.remove(user)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True)
@@ -54,6 +55,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+    def add_friend(self, friend):
+        self.following.add(friend)
+        friend.followers.add(self)
+
+    def remove_friend(self, friend):
+        self.following.remove(friend)
+        friend.followers.remove(self)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
