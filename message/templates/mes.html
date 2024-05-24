@@ -8,31 +8,59 @@
   <title>Instagram Message Mockup</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    .searchblock{
+    .searchblock {
         height: 100vh;
         width: 30%;
         border-right: 1px solid gray;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
+        background-color: #000; /* Add a background color to see the text clearly */
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 10vh;
+        padding: 30px 3vh;
+    }
+    .header span {
+        font-size: 25px;
+        color: white;
+        font-weight: bold;
+    }
+    .header button{
+      margin-left: 20vh;
+    }
+    .message-requests {
+        display: flex;
+        align-items: center;
+        margin: 2vh 3vh;
+        padding: 0px 3vh;
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+    }
+    .message-requests button {
+        background: none;
+        border: none;
+        color: gray;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 25vh;
+        cursor: pointer;
     }
   </style>
 </head>
-<style>
-    
-</style>
-    
 <body>
-        <div class="searchblock">
-            <div style="height: 8vh; margin-left: 9.6vh;">
-                <div style="font-size: 25px; color: white; font-weight: bold; padding-top: 20px; margin-left: 3vh; width: 100%;">Search</div>
-                <span class="material-icons"
-                style="padding-right: 8px; float: left; font-size: 25px;">edit</span>
-            </div>
-            <div style="margin-left: 9.6vh;">
-                <div style="font-size: 15px; color: white; font-weight: bold; padding-top: 20px; margin-left: 3vh; width: 100%;">
-                  Message
-                </div>
-            </div>
+    <div class="searchblock">
+        <div class="header">
+            <span>Search</span>
+            <button class="material-icons">border_color</button>
         </div>
+        <div class="message-requests">
+            <span>Message</span>
+            <button>Requests</button>
+        </div>
+    </div>
 </body>
 </html>
