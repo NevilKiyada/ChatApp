@@ -7,7 +7,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('The Username field must be set')
         if not email:
             raise ValueError('The Email field must be set')
-        
+       
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
@@ -27,6 +27,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
+    name= models.CharField(max_length=100 , blank=True, null=True)
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
@@ -39,6 +40,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
+
+    # Add helper methods
+    def get_followers(self):
+        return [follow.follower for follow in self.followers.all()]
+
+    def get_following(self):
+        return [follow.following for follow in self.following.all()]
 
     def __str__(self):
         return self.username

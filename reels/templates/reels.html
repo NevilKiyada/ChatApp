@@ -20,21 +20,24 @@
             <li><strong>Bio:</strong> {{ user.bio }}</li>
         </ul>
     
-        <h2>Following</h2>
+        <h2>Followers:</h2>
+    <ul>
+        <h2>Followers:</h2>
         <ul>
-            {% for following_user in user.following.all %}
-                <li>{{ following_user.username }}</li>
-            {% empty %}
-                <li>No users followed yet.</li>
-            {% endfor %}
-        </ul>
-    
-        <h2>Followers</h2>
-        <ul>
-            {% for follower in user.followers.all %}
+            {% for follower in followers %}
+            {{ user.follower | length }}
                 <li>{{ follower.username }}</li>
             {% empty %}
                 <li>No followers yet.</li>
+            {% endfor %}
+        </ul>
+    
+        <h2>Following:</h2>
+        <ul>
+            {% for follow in following %}
+                <li>{{ follow.username }}</li>
+            {% empty %}
+                <li>Not following anyone yet.</li>
             {% endfor %}
         </ul>
     </body>

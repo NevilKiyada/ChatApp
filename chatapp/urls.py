@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from message.views import *
+from account.views import *
+from reels.views import *
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from chatapp import settings
