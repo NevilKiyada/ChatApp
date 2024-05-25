@@ -106,11 +106,14 @@ def Add(request):
     return render(request,'add.html')
 
 def Account(request):
-    return render(request,'account.html')
+    user=CustomUser.objects.all()
+    is_large_sidebar = True 
+    return render(request,'account.html',context={'user':user ,'is_large_sidebar': is_large_sidebar})
 
 def Reels(request):
     return render(request,'reels.html')
 
 def Explore(request):
+    user=CustomUser.objects.all()
     is_large_sidebar = True 
-    return render(request,'explore.html',context={'is_large_sidebar': is_large_sidebar} )
+    return render(request,'explore.html',context={'user':user ,'is_large_sidebar': is_large_sidebar})

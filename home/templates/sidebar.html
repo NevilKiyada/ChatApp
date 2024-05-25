@@ -41,10 +41,10 @@
 </head>
 
 <body>
-     <h1>Welcome {{request.user.username}} </h1> 
+    {% comment %} <h1>Welcome {{request.user.username}} </h1> 
     <a href="logout">  
         Logout 
-      </a> 
+      </a>  {% endcomment %}
     {% if is_large_sidebar %}
         {% include 'largesidebar.html' %}
     {% else %}
