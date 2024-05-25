@@ -157,7 +157,11 @@
             <div class="profile-pic" style="background-image: url('{{ request.user.get_profile_picture }};');"></div>
             <div class="profile-info">
                 <div class="username">
+<<<<<<< HEAD
                     <span>{{request.user.username}}</span>
+=======
+                    <span>{{ user.username }}</span>
+>>>>>>> 1b4f615d5a16743a371c3c5925f39469d694cd47
                     <div class="profile-buttons">
                         <button>Edit Profile</button>
                         <button>View Archives</button>
@@ -166,12 +170,25 @@
                 </div>
                 <div class="stats">
                     <div><strong>0</strong> posts</div>
-                    <div><strong>16</strong> followers</div>
-                    <div><strong>33</strong> following</div>
+                    <div><strong>
+                        {% for following_user in user.following.all %}
+                            <p color="White">{{ following_user.username }}</p>
+                            
+                        {% empty %}
+                            <p>No users followed yet.</p>
+                        {% endfor %}
+                    </strong> followers</div>
+                    <div><strong>
+                        {% for follower in user.followers.all %}
+                        <p>{{ follower.username }}</p>
+                        {% empty %}
+                            <p>No followers yet.</p>
+                        {% endfor %}
+                    </strong> following</div>
                 </div>
                 <div class="bio">
-                    <div><strong>____8h9__</strong></div>
-                    <div>Bio description goes here</div>
+                    <div><strong>{{ user.name}}</strong></div>
+                    <div>{{user.bio}}</div>
                     <div><a href="#">website.com</a></div>
                 </div>
             </div>

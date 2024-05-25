@@ -1,12 +1,19 @@
-from django.shortcuts import render
-from home.models import *
+from django.shortcuts import render , get_object_or_404
+
+from home.models import CustomUser , Follow 
+
 # Create your views here.
 
 
-def re (request,username):
-   
-    users = CustomUser.objects.all()  # Fetch all users
+def Reels (request):
+    luser=request.user
+    user = get_object_or_404(CustomUser, username=luser)  
+    followers = user.get_followers()
+    following = user.get_following()
+    print 
     context = {
-        'users': users,
+        'users': user,
+        'followers': followers,
+        'following': following,
     }
     return render(request, 'reels.html', context)

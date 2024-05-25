@@ -4,6 +4,12 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from message.views import *
+<<<<<<< HEAD
+=======
+from account.views import *
+from reels.views import *
+from django.conf.urls.static import static
+>>>>>>> 1b4f615d5a16743a371c3c5925f39469d694cd47
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
