@@ -14,30 +14,32 @@
         border-right: 1px solid gray;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
-        background-color: #000; /* Add a background color to see the text clearly */
+        background-color: #000; /* Background color for better text visibility */
+        color: white; /* Default text color */
     }
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 10vh;
-        padding: 30px 3vh;
+        padding: 0 3vh;
     }
     .header span {
         font-size: 25px;
-        color: white;
         font-weight: bold;
     }
-    .header button{
-      margin-left: 20vh;
+    .header button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
     }
     .message-requests {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        margin: 2vh 3vh;
-        padding: 0px 3vh;
+        padding: 2vh 3vh;
         font-size: 18px;
-        color: white;
         font-weight: bold;
     }
     .message-requests button {
@@ -45,21 +47,62 @@
         border: none;
         color: gray;
         font-size: 14px;
-        font-weight: bold;
-        margin-left: 25vh;
         cursor: pointer;
+    }
+    .chat {
+        padding: 3vh 3vh;
+    }
+    .chatelement {
+        display: flex;
+        align-items: center;
+        padding: 1vh 0;
+    }
+    .profilepic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: gray; 
+        margin-right: 2vh;
+    }
+    .nameblock {
+        display: flex;
+        flex-direction: column;
+    }
+    .nameblock .name {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .nameblock .lastmessage {
+        font-size: 14px;
+        color: gray;
     }
   </style>
 </head>
 <body>
     <div class="searchblock">
         <div class="header">
-            <span>Search</span>
+            <span>{{ request.user.username }}</span>
             <button class="material-icons">border_color</button>
         </div>
         <div class="message-requests">
             <span>Message</span>
             <button>Requests</button>
+        </div>
+        <div class="chat">
+            <div class="chatelement">
+                <span class="profilepic"></span>
+                <div class="nameblock">
+                    <span class="name">John Doe</span>
+                    <span class="lastmessage">Hey, how are you?</span>
+                </div>
+            </div>
+            <div class="chatelement">
+                <span class="profilepic"></span>
+                <div class="nameblock">
+                    <span class="name">Jane Smith</span>
+                    <span class="lastmessage">Can we meet tomorrow?</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
