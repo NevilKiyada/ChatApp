@@ -36,8 +36,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background-color: gray;
-            /* Placeholder for profile picture */
+            background-size: cover;
         }
 
         .header .profile-info {
@@ -155,10 +154,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="profile-pic"></div>
+            <div class="profile-pic" style="background-image: url('{{ request.user.get_profile_picture }};');"></div>
             <div class="profile-info">
                 <div class="username">
-                    <span>____8h9__</span>
+                    <span>{{request.user.username}}</span>
                     <div class="profile-buttons">
                         <button>Edit Profile</button>
                         <button>View Archives</button>

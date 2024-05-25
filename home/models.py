@@ -29,7 +29,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
-    profile_picture = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
+    profile_picture = models.ImageField(upload_to="img", blank=True, null=True)
+    profile_picture_url = models.URLField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -42,7 +43,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-
+    
+    def get_profile_picture(self):
+        if self.profile_picture_url:
+            return self.profile_picture_url
+        elif self.profile_picture:
+            return self.profile_picture.url
+        return None
+    
+    
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
