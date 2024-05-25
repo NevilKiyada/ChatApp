@@ -1,23 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.utils.translation import gettext_lazy as _
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, name, email, password=None, **extra_fields):
+    def create_user(self, username, email, password=None, **extra_fields):
         if not username:
             raise ValueError('The Username field must be set')
-        if not name:
-            raise ValueError('The Name field must be set')
         if not email:
             raise ValueError('The Email field must be set')
         
         email = self.normalize_email(email)
-        user = self.model(username=username, name=name, email=email, **extra_fields)
+        user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, name, email, password=None, **extra_fields):
+    def create_superuser(self, username, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         
@@ -26,24 +23,14 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
         
-        return self.create_user(username, name, email, password, **extra_fields)
-
-    def add_friend(self, user, friend):
-        user.following.add(friend)
-        friend.followers.add(user)
-
-    def remove_friend(self, user, friend):
-        user.following.remove(friend)
-        friend.followers.remove(user)
+        return self.create_user(username, email, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True)
-    name = models.CharField(max_length=150)
     email = models.EmailField(unique=True)
-    mobilenumber = models.CharField(max_length=15, blank=True, null=True)
+    profile_picture = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='user_following', blank=True)
-    following = models.ManyToManyField('self', symmetrical=False, related_name='user_followers', blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -51,34 +38,66 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['name', 'email']
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
 
-    def add_friend(self, friend):
-        self.following.add(friend)
-        friend.followers.add(self)
-
-    def remove_friend(self, friend):
-        self.following.remove(friend)
-        friend.followers.remove(self)
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    pic = models.ImageField(upload_to="userimg", blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.user.username}'s Profile"
-
-class Friendship(models.Model):
-    user = models.ForeignKey(CustomUser, related_name='friendships', on_delete=models.CASCADE)
-    friend = models.ForeignKey(CustomUser, related_name='friend_of', on_delete=models.CASCADE)
+class Post(models.Model):
+    id = models.AutoField(primary_key=True)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
+    image = models.ImageField(upload_to='posts/')
+    caption = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Post by {self.author.username} at {self.created_at}"
+
+class Like(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='likes')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['user', 'post']
+    
+    def __str__(self):
+        return f"{self.user.username} likes {self.post}"
+
+class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.post}"
+    
+
+class Follow(models.Model):
+    follower = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='following')
+    following = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='followers')
 
     class Meta:
-        unique_together = ['user', 'friend']
+        unique_together = ['follower', 'following']
 
     def __str__(self):
-        return f"{self.user.username} - {self.friend.username}"
+        return f"{self.follower.username} follows {self.following.username}"
+
+
+
+
+
+class ChatMessage(models.Model):
+    id = models.AutoField(primary_key=True)
+    sender = models.ForeignKey(CustomUser, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(CustomUser, related_name='received_messages', on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"From {self.sender.username} to {self.receiver.username}: {self.message}"
+
+

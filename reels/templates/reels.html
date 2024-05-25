@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Profile</title>
+    </head>
+    <body>
+        <h1>{{ user.username }}'s Profile</h1>
+        <ul>
+            <li><strong>Username:</strong> {{ user.username }}</li>
+            <li><strong>Email:</strong> {{ user.email }}</li>
+            <li><strong>Name:</strong> {{ user.name }}</li>
+            <li><strong>Mobile Number:</strong> {{ user.mobilenumber }}</li>
+            <li><strong>Bio:</strong> {{ user.bio }}</li>
+        </ul>
+    
+        <h2>Following</h2>
+        <ul>
+            {% for following_user in user.following.all %}
+                <li>{{ following_user.username }}</li>
+            {% empty %}
+                <li>No users followed yet.</li>
+            {% endfor %}
+        </ul>
+    
+        <h2>Followers</h2>
+        <ul>
+            {% for follower in user.followers.all %}
+                <li>{{ follower.username }}</li>
+            {% empty %}
+                <li>No followers yet.</li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
     <title>Document</title>
-</head>
-<body>
-    <div>Reels</div>
-</body>
-</html>

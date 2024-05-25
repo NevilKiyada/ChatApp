@@ -38,7 +38,7 @@ def login_page (request):
 
         if not CustomUser.objects.filter(username= Username).exists():
             messages.info(request, "User name is not available")
-            return redirect('/login/') 
+            return redirect('/login') 
         
         #chek username and password are correct or not using authenticated functions
         check_user=authenticate(username=Username, password=Password)
@@ -46,7 +46,7 @@ def login_page (request):
         #if check_user is not set then pass message to login page
         if check_user is None :
             messages.info(request, "password is not valid")
-            return redirect('/login/') 
+            return redirect('/login') 
         
         else :
             login(request,check_user)

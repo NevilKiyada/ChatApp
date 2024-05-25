@@ -3,7 +3,6 @@ from .models import *
 # Register your models here.
 
 
-from .models import CustomUser, UserProfile  # Correctly import the models
+from .models import CustomUser  # Correctly import the models
 
 admin.site.register(CustomUser)
-admin.site.register(UserProfile)
