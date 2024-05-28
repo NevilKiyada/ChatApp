@@ -155,7 +155,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="profile-pic"></div>
+            <div class="profile-pic">
+                
+            </div>
             <div class="profile-info">
                 <div class="username">
                     <span>{{ user.username }}</span>
@@ -167,21 +169,8 @@
                 </div>
                 <div class="stats">
                     <div><strong>0</strong> posts</div>
-                    <div><strong>
-                        {% for following_user in user.following.all %}
-                            <p color="White">{{ following_user.username }}</p>
-                            
-                        {% empty %}
-                            <p>No users followed yet.</p>
-                        {% endfor %}
-                    </strong> followers</div>
-                    <div><strong>
-                        {% for follower in user.followers.all %}
-                        <p>{{ follower.username }}</p>
-                        {% empty %}
-                            <p>No followers yet.</p>
-                        {% endfor %}
-                    </strong> following</div>
+                    <div><strong>{{fcount}}</strong> followers</div>
+                    <div><strong>{{scount}}</strong> following</div>
                 </div>
                 <div class="bio">
                     <div><strong>{{ user.name}}</strong></div>

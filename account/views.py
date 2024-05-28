@@ -1,14 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from home.models import *
 # Create your views here.
 
 
 def Account(request):
-    users = CustomUser.objects.all()  # Fetch all users
-    is_large_sidebar = True 
+    luser=request.user
+    user = get_object_or_404(CustomUser, username=luser)  
+    followers = user.get_followers()
+    following = user.get_following()
+    fcount =0
+    scount = 0
+    for follower in followers:
+        print (follower)
+        fcount += 1
+    for followin in following:
+        print (followin)
+        scount += 1
     context = {
-        'users': users,
-        'is_large_sidebar': is_large_sidebar,
+        'users': user,
+        'followers': followers,
+        'following': following,
+        'fcount': fcount,
+        'scount': scount,
     }
     return render(request,'account.html', context)
 

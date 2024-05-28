@@ -23,9 +23,9 @@
         <h2>Followers:</h2>
     <ul>
         <h2>Followers:</h2>
+        {{ follower | length }}
         <ul>
             {% for follower in followers %}
-            {{ user.follower | length }}
                 <li>{{ follower.username }}</li>
             {% empty %}
                 <li>No followers yet.</li>

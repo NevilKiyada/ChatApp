@@ -10,7 +10,9 @@ def Reels (request):
     user = get_object_or_404(CustomUser, username=luser)  
     followers = user.get_followers()
     following = user.get_following()
-    print 
+    for follower in followers:
+        print (followers)
+
     context = {
         'users': user,
         'followers': followers,
